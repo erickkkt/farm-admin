@@ -18,7 +18,7 @@ import { AnimalPopupComponent } from './animal-popup/animal-popup.component';
 })
 export class AnimalManagementComponent implements OnInit, AfterViewInit {
 
-  displayedColumns: string[] = ['code', 'name', 'age', 'weight', 'height', 'healthStatus', 'isActive', 'actions'];
+  displayedColumns: string[] = ['code', 'name', 'cageName', 'farmName', 'weight', 'height', 'healthStatus', 'isActive', 'actions'];
 
   dataSource!: AnimalDataSource;
   totalRecords: number = 0;

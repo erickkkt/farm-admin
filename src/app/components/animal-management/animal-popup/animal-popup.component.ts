@@ -55,11 +55,18 @@ export class AnimalPopupComponent implements OnInit {
     if (this.updateAnimal && this.updateAnimal.farmId) {
       await this.loadCages(this.updateAnimal.farmId);
     }
+
+    if (this.updateMode && this.updateAnimal) {
+      this.initDataForUpdate(this.updateAnimal);
+    }
+    
     this.farmId.valueChanges.subscribe((farmId: string) => {
       if (farmId) {
         this.loadCages(farmId);
+        this.cageId.setValue('');
       } else {
         this.cages = [];
+        this.cageId.setValue('');
       }
     });
   }
@@ -146,17 +153,39 @@ export class AnimalPopupComponent implements OnInit {
 
   initDataForUpdate(animal: Animal) {
     if (animal) {
+      // Add the missing code field
+      this.code.setValue(animal.code);
       this.name.setValue(animal.name);
       this.description.setValue(animal.description);
-      this.species.setValue(animal.species);
+      
+      if (typeof animal.species === 'string') {
+        this.species.setValue(Species[animal.species as keyof typeof Species] || animal.species);
+      } else {
+        this.species.setValue(animal.species);
+      }
+      
       this.height.setValue(animal.height);      
       this.weight.setValue(animal.weight);
-      this.gender.setValue(animal.gender);
+      
+      if (typeof animal.gender === 'string') {
+        this.gender.setValue(Gender[animal.gender as keyof typeof Gender] || animal.gender);
+      } else {
+        this.gender.setValue(animal.gender);
+      }
+      
       this.cageId.setValue(animal.cageId);
-      this.farmId.setValue(animal.farmId);      
-      this.healthStatus.setValue(animal.healthStatus);
-      this.birthDate.setValue(animal.dateOfBirth);
-      this.arrivalDate.setValue(animal.dateOfArrival);
+      this.farmId.setValue(animal.farmId);
+      
+      if (typeof animal.healthStatus === 'string') {
+        this.healthStatus.setValue(HealthStatus[animal.healthStatus as keyof typeof HealthStatus] || animal.healthStatus);
+      } else {
+        this.healthStatus.setValue(animal.healthStatus);
+      }
+      
+      // Improved date handling
+      this.birthDate.setValue(animal.dateOfBirth ? new Date(animal.dateOfBirth) : new Date());
+      this.arrivalDate.setValue(animal.dateOfArrival ? new Date(animal.dateOfArrival) : new Date());
+      
       this.status.setValue(animal.isActive ? Status.Active : Status.Inactive);
     }
   }
