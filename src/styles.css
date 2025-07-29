@@ -1,7 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
 
 .display-flex {
   display: flex;
@@ -49,4 +56,27 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .flex-100 {
   width: 100%;
+}
+
+.colour-success {
+  color: #4caf50;
+}
+
+.colour-error {
+  color: #f44336;
+}
+
+.colour-warning {
+  color: #ff9800;
+}
+
+.colour-danger {
+  color: #f44336;
+}
+
+mat-form-field {
+  margin-right: 5px;
+  margin-bottom: 10px;
+  width: 100%;
+  border-radius: 5%;
 }

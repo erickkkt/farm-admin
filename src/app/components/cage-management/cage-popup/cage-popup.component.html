@@ -28,16 +28,13 @@
                         formControlName="capacity" min="1">
                     <mat-error *ngIf="capacity.invalid">Capacity is required and must be greater than 0</mat-error>
                 </mat-form-field>
-            </section>
-
-            <section class="display-flex flex-direction-row">                
                 <mat-form-field>
                     <mat-label>Current Animal Count</mat-label>
                     <input matInput type="number" data-test="current-animal-count" placeholder="Current Animal Count"
                         formControlName="currentAnimalCount" min="0">
                     <mat-error *ngIf="currentAnimalCount.invalid">Current Animal Count must be 0 or greater</mat-error>
                 </mat-form-field>
-            </section>
+            </section>           
 
             <section class="display-flex flex-direction-row">
                 <mat-form-field>
